@@ -78,10 +78,10 @@ void receieveEvent() {
       analogWrite((int)destination, receivedValue - 256); //if you want to send analog content, add 256 to it first
     } else if (receivedValue == 0 ) {
       digitalWrite((int)destination, LOW);
-      Serial.print(" SET LOW ");
+      //Serial.print(" SET LOW ");
     } else {
       digitalWrite((int)destination, HIGH);
-      Serial.print(" SET HIGH ");
+      //Serial.print(" SET HIGH ");
     }
 
   } else { //we had a read
@@ -90,9 +90,7 @@ void receieveEvent() {
     } else {
       pinMode((int)destination, INPUT);
       dataToSend = (long)digitalRead((int)destination);
-     
     }
-    //writeWireLong((long)dataToSend);
     //Serial.print("; Data sent: ");
     //Serial.print(dataToSend);
   }
