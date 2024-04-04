@@ -1,34 +1,32 @@
 /* Gus Mueller, April 2 2024
  * sends data to a small Arduino (I use a Mini Pro at 8MHz) from a
- * NodeMCU over I2C
+ * NodeMCU or other master over I2C
  * 
  */
 #include "Wire.h"
 #define I2C_SLAVE_ADDR 20
  
- 
 volatile int receivedValue = 0;
 long lastMasterSignal = 0;
 long millisNow = millis();
 long dataToSend = -1;
- 
 
 void setup(){
   Wire.begin(I2C_SLAVE_ADDR);
   Wire.onReceive(receieveEvent); 
   Wire.onRequest(requestEvent);
-  Serial.begin(115200);
-  Serial.println("Starting up Arduino Slave...");
+  //Serial.begin(115200);
+  //Serial.println("Starting up Arduino Slave...");
 }
 
 void loop(){
-  millisNow = millis();
-  Serial.print("millis: ");
-  Serial.print(millisNow);
-  Serial.print(" ");
-  Serial.print(lastMasterSignal);
-  Serial.println(" ");
-  delay(2000);
+  //millisNow = millis();
+  //Serial.print("millis: ");
+  //Serial.print(millisNow);
+  //Serial.print(" ");
+  //Serial.print(lastMasterSignal);
+  //Serial.println(" ");
+  //delay(2000);
 }
 
 //send a bytes to the I2C master.  
@@ -69,12 +67,12 @@ void receieveEvent() {
     //Serial.print(":");
     //Serial.print(receivedValue);
   }
-  Serial.print("Destination: ");
-  Serial.print(destination);
+  //Serial.print("Destination: ");
+  //Serial.print(destination);
   
   if(byteCursor > 0) { //we had a write
-    Serial.print("; value: ");
-    Serial.print(receivedValue);
+    //Serial.print("; value: ");
+    //Serial.print(receivedValue);
     pinMode((int)destination, OUTPUT);
     if(receivedValue > 255 ) {
       analogWrite((int)destination, receivedValue - 256); //if you want to send analog content, add 256 to it first
@@ -95,11 +93,11 @@ void receieveEvent() {
      
     }
     //writeWireLong((long)dataToSend);
-    Serial.print("; Data sent: ");
-    Serial.print(dataToSend);
+    //Serial.print("; Data sent: ");
+    //Serial.print(dataToSend);
   }
  
-  Serial.println();
+  //Serial.println();
 }
 
 void writeWireLong(long val) {
@@ -111,12 +109,6 @@ void writeWireLong(long val) {
   Wire.write(buffer, 4);
 }
 
-void writeWireInt(int val) {
-  byte buffer[2];
-  buffer[0] = val >> 8;
-  buffer[1] = val;
-  Wire.write(buffer, 2);
-}
  
  
  
