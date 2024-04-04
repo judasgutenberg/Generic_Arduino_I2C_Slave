@@ -1,4 +1,13 @@
-This sketch will turn any Arduino into an I2C Slave whose pins can be manipulated by a master.  To use this, set the I2C Address in the sketch appropriately and then refer to it in your Master code.  
+This sketch will turn any Arduino into an I2C Slave whose pins can be manipulated by a master.  Your wiring will look something like this (depending on your Arduinos):
+
+  ![image](masterslave_arduino_schematic.jpg)
+
+
+  ![image](masterslave_arduino.jpg)
+
+
+
+To use this, set the I2C Address in the sketch appropriately and then refer to it in your Master code.  
 To write digital values to the pins on the slave from the master, do something like this:
 
 <code>
