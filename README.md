@@ -11,10 +11,11 @@ To use this, set the I2C Address in the sketch appropriately and then refer to i
 To write digital values to the pins on the slave from the master, do something like this:
 
 <code>
-//simple example:
 
+//set your I2CAddress in you master code to whatever it is in your sketch
 int arduinoSlaveAddress = 20;
-  
+
+//simple example:
 Wire.beginTransmission(arduinoSlaveAddress);
 Wire.write(2); //will write a digital value to D2 on an Arduino Mini
 Wire.write(1); //anything between 1 and 255 counts as HIGH
