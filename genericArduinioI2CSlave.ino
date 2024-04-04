@@ -5,9 +5,6 @@
  */
 #include "Wire.h"
 #define I2C_SLAVE_ADDR 20
-#define INTERRUPT_OUT 0
-
-const long maxMillisToRebootRP = 2400000;
  
  
 volatile int receivedValue = 0;
