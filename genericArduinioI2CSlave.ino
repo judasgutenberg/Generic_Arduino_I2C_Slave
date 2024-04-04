@@ -32,12 +32,9 @@ void loop(){
   delay(2000);
 }
 
-//send a byte to the I2C master.  
-//on the ATTiny, the the master calls this x times, not just once as I'd originally thought
-//but in the true Wire library it seems you can send whole arrays, which is all that matters here
+//send a bytes to the I2C master.  
 void requestEvent(){
-  //lastMasterSignal = millisNow;
-  //the usual data dump
+  //i only worry about longs for this to keep it simple
   writeWireLong(dataToSend);
 }
 
