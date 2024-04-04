@@ -14,6 +14,7 @@ Wire.write(0);  //counts as LOW
 Wire.endTransmission();
 delay(800); 
 
+
 //using the Analog pins as digital outs:
 Wire.beginTransmission(arduinoSlaveAddress);
 Wire.write(14); //will write a digital value to A0 on an Arduino Mini
@@ -26,6 +27,7 @@ Wire.write(0);  //counts as LOW
 Wire.endTransmission();
 delay(800); 
 
+
  //sending an analog value to a pin that can do PWM:
  Wire.beginTransmission(arduinoSlaveAddress);
  Wire.write(3); //will write a value to D3 on an Arduino Mini
@@ -37,6 +39,7 @@ delay(800);
  Wire.write(511);  //counts as AnalogWrite(255);
  Wire.endTransmission();
  delay(800); 
+
 
 //reading an analog or digital value from the slave:
 Wire.beginTransmission(arduinoSlaveAddress); 
