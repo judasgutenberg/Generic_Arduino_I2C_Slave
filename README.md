@@ -14,7 +14,7 @@ If more than one byte is sent to the slave, it is interpreted as a write operati
 
 Pins normally correspond to whatever the numbering system is used by the Arduino (that is, 3 means D3 or perhaps GPIO3).  But analog pins such as
 A1, A2, etc. can also be used as outputs, where, on the Arduino UNO, A0 is at digitalWrite(14, HIGH/LOW).  When using the analog pins as analog 
-inputs, they are address with addresses starting at 64 to keep them out of the number space of the D pins.
+inputs, they are addressed with addresses starting at 64 to keep them out of the number space of the D pins.
 
 When sending digital values to a pin, use either 0 or 1 for LOW or HIGH.  When sending analog values, use 256 plus the analog value.  Any number
 above 255 is interpreted as an analog value.  This minor headache for the developers keeps the data to the slave as simple as possible.
