@@ -5,6 +5,19 @@ This sketch will turn any Arduino into an I2C Slave whose pins can be manipulate
 
   ![image](masterslave_arduino.jpg)
 
+To keep the interface as simple as possible, there are only two things that the slave can do in response to the master.
+It can send a value to a pin (analog or digital, depending on the capability of the pin and how it is used).
+Or it can receive a value from a pin (analog or digital, depending on the capability of the pin and how it is used).
+
+If only one byte is sent to the slave, it is interpreted as a read operation to a pin and a value is prepared for return.
+If more than one byte is sent to the slave, it is interpreted as a write operation, with the first byte being a pin and the rest being data.
+
+Pins normally correspond to whatever the numbering system is used by the Arduino (that is, 3 means D3 or perhaps GPIO3).  But analog pins such as
+A1, A2, etc. can also be used as outputs, where, on the Arduino UNO, A0 is at digitalWrite(14, HIGH/LOW).  When using the analog pins as analog 
+inputs, they are address with addresses starting at 64 to keep them out of the number space of the D pins.
+
+When sending digital values to a pin, use either 0 or 1 for LOW or HIGH.  When sending analog values, use 256 plus the analog value.  Any number
+above 255 is interpreted as an analog value.  This minor headache for the developers keeps the data to the slave as simple as possible.
 
 
 To use this, set the I2C Address in the sketch appropriately and then refer to it in your Master code.  
