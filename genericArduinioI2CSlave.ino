@@ -23,7 +23,6 @@ void setup(){
 
 void loop(){
   millisNow = millis();
-  //if it's been more than 20 minutes since a raspberry pi i2c signal:
   Serial.print("millis: ");
   Serial.print(millisNow);
   Serial.print(" ");
