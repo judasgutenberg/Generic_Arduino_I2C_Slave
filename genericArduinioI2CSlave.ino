@@ -108,7 +108,4 @@ void writeWireLong(long val) {
   buffer[3] = val;
   Wire.write(buffer, 4);
 }
-
- 
- 
  
