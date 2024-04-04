@@ -12,6 +12,9 @@ To write digital values to the pins on the slave from the master, do something l
 
 <code>
 //simple example:
+
+int arduinoSlaveAddress = 20;
+  
 Wire.beginTransmission(arduinoSlaveAddress);
 Wire.write(2); //will write a digital value to D2 on an Arduino Mini
 Wire.write(1); //anything between 1 and 255 counts as HIGH
