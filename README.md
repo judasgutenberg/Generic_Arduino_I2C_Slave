@@ -1,6 +1,7 @@
 This sketch will turn any Arduino into an I2C Slave whose pins can be manipulated by a master.  To use this, set the I2C Address in the sketch appropriately and then refer to it in your Master code.  
 To write digital values to the pins on the slave from the master, do something like this:
 
+<code>
 //simple example:
 Wire.beginTransmission(arduinoSlaveAddress);
 Wire.write(2); //will write a digital value to D2 on an Arduino Mini
@@ -54,3 +55,4 @@ Serial.print(millis());
 Serial.print(" "); 
 Serial.println((int)totalValue); 
 delay(600);
+</code>
