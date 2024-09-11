@@ -22,7 +22,7 @@ above 255 is interpreted as an analog value.  This minor headache for the develo
 
 
 To use this, set the I2C Address in the sketch appropriately and then refer to it in your Master code.  
-To write digital values to the pins on the slave from the master, do something like this:
+To write digital values to the pins on the slave (once flashed with this software) from the master, put code on your Master something like this:
 
 <code>
 
