@@ -10,34 +10,38 @@ volatile int receivedValue = 0;
 long lastMasterSignal = 0;
 long millisNow = millis();
 long dataToSend = -1;
+//String debug = "";
 
 void setup(){
+  //Serial.begin(115200);
   Wire.begin(I2C_SLAVE_ADDR);
   Wire.onReceive(receieveEvent); 
   Wire.onRequest(requestEvent);
-  //Serial.begin(115200);
   //Serial.println("Starting up Arduino Slave...");
 }
 
 void loop(){
   //millisNow = millis();
-  //Serial.print("millis: ");
+  //Serial.println("millis: ");
   //Serial.print(millisNow);
   //Serial.print(" ");
-  //Serial.print(lastMasterSignal);
+  //Serial.println(debug);
+  //debug = "";
   //Serial.println(" ");
   //delay(2000);
 }
 
 //send a bytes to the I2C master.  
 void requestEvent(){
+  Serial.println("request event");
   //i only worry about longs for this to keep it simple
   writeWireLong(dataToSend);
 }
 
 void receieveEvent() {
+  cli(); 
   lastMasterSignal = millisNow;
-  //Serial.println("receive event");
+  //debug += "receive event";
   byte byteCount = 0;
   byte byteCursor = 0;
   byte receivedValues[4];
@@ -61,26 +65,27 @@ void receieveEvent() {
     byteCount++;
   }
   for(byte otherByteCursor = byteCursor; otherByteCursor>0; otherByteCursor--) {
-    receivedValue = receivedValue + receivedValues[otherByteCursor-1] * pow(256, byteCursor-1)  ;
-    //Serial.println("qoot: ");
-    //Serial.print(byteCursor-1);
-    //Serial.print(":");
-    //Serial.print(receivedValue);
+    receivedValue = receivedValue + receivedValues[otherByteCursor - 1] * (1 << ((byteCursor - 1) * 8));
   }
-  //Serial.print("Destination: ");
-  //Serial.print(destination);
+  //debug += "\nDestination: ";
+  //debug += destination;
   
   if(byteCursor > 0) { //we had a write
     //Serial.print("; value: ");
-    //Serial.print(receivedValue);
+    //debug += "XX\n";
     pinMode((int)destination, OUTPUT);
+    //debug += "yy\n";
     if(receivedValue > 255 ) {
       analogWrite((int)destination, receivedValue - 256); //if you want to send analog content, add 256 to it first
     } else if (receivedValue == 0 ) {
+      //debug += "aOFF\n";
       digitalWrite((int)destination, LOW);
+      //debug += "aOFFdone\n";
       //Serial.print(" SET LOW ");
     } else {
+      //debug += "aON\n";
       digitalWrite((int)destination, HIGH);
+      //debug += "aONdone\n";
       //Serial.print(" SET HIGH ");
     }
 
@@ -94,8 +99,7 @@ void receieveEvent() {
     //Serial.print("; Data sent: ");
     //Serial.print(dataToSend);
   }
- 
-  //Serial.println();
+  sei(); 
 }
 
 void writeWireLong(long val) {
