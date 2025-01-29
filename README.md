@@ -25,7 +25,7 @@ SCL and SDA lines.  Use 5 or 10 kilohms.  Otherwise the slave might hang after p
 
 
 To use this, set the I2C Address in the sketch appropriately and then refer to it in your Master code.  
-To write digital values to the pins on the slave (once flashed with this software) from the master, put code on your Master something like this:
+To write digital values to the pins on the slave (once flashed with this software) from the master, put code on your Master doing something like this:
 
 <code>
 
