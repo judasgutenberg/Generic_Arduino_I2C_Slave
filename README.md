@@ -1,4 +1,4 @@
-This sketch will turn any Arduino into an I2C Slave whose pins can be manipulated by a master.  Your wiring will look something like this (depending on your Arduinos):
+This sketch will turn any Arduino into an I2C Slave whose pins can be manipulated by a master.  This turns extra Arduinos into port expanders.  Your wiring will look something like this (depending on your Arduinos):
 
   ![image](masterslave_arduino_schematic.jpg)
 
