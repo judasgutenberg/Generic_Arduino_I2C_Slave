@@ -23,12 +23,11 @@ above 255 is interpreted as an analog value.  This minor headache for the develo
 VERY IMPORTANT:  If you don't have any other I2C devices on the bus with your master and slave Arduinos, you might well need pull-up resistors on the 
 SCL and SDA lines.  Use 5 or 10 kilohms.  Otherwise the slave might hang after processing one data packet.
 
+A variant of this slave software can also process a limited set of commands from the master, including a watchdog-petting command.
+https://github.com/judasgutenberg/Arduino_I2C_Slave_With_Commands
 
 To use this, set the I2C Address in the sketch appropriately and then refer to it in your Master code.  
 To write digital values to the pins on the slave (once flashed with this software) from the master, put code on your MASTER doing something like this:
-
-A variant of this slave software can also process a limited set of commands from the master, including a watchdog-petting command.
-https://github.com/judasgutenberg/Arduino_I2C_Slave_With_Commands
 
 <code>
 
