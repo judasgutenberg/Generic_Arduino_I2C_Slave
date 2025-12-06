@@ -1,4 +1,4 @@
-##Overview
+## Overview
 
 This sketch will turn any Arduino into an I2C Slave whose pins can be manipulated by a master.  This turns extra Arduinos into port expanders.  Your wiring will look something like this (depending on your Arduinos):
 
@@ -29,7 +29,7 @@ A variant of this slave software can also process a limited set of commands from
 
 https://github.com/judasgutenberg/Arduino_I2C_Slave_With_Commands
 
-##Use
+## Use
 
 To use this, set the I2C Address in the sketch appropriately and then refer to it in your Master code.  
 To write digital values to the pins on the slave (once flashed with this software) from the master, put code on your MASTER doing something like this:
